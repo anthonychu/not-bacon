@@ -44,6 +44,10 @@
             {
               "name": "CUSTOM_VISION_API_URL",
               "value": "[parameters('customVisionApiUrl')]"
+            },
+            {
+              "name": "PROJECT",
+              "value": "src/aspnetcore"
             }
           ]
         },
