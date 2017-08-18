@@ -6,3 +6,4 @@ NotBacon is a web application that detects the presence of bacon in a photograph
 
 [![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/)
 
+![NotBacon in Action](not-bacon-short.gif)
