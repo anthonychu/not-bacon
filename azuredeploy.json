@@ -9,12 +9,6 @@
     "siteLocation": {
       "type": "string"
     },
-    "sku": {
-      "type": "string"
-    },
-    "workerSize": {
-      "type": "string"
-    },
     "customVisionApiKey": {
       "type": "securestring"
     },
@@ -84,12 +78,13 @@
       "location": "[parameters('siteLocation')]",
       "properties": {
         "name": "[parameters('hostingPlanName')]",
-        "workerSizeId": "[parameters('workerSize')]",
+        "workerSizeId": "1",
         "reserved": false,
         "numberOfWorkers": "1"
       },
-      "sku": {
-        "Tier": "[parameters('sku')]"
+      "sku": {  
+        "Tier":"Free",
+        "Name":"F1"
       }
     },
     {
