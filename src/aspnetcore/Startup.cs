@@ -8,18 +8,10 @@ namespace NotBacon
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
-
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
             services.AddSingleton<HttpClient>();
-            services.AddSingleton<IConfiguration>(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -32,7 +24,6 @@ namespace NotBacon
             app.UseMvc();
             app.UseDefaultFiles();
             app.UseStaticFiles();
-            var foo = Configuration.GetValue<string>("Foo");
         }
     }
 }

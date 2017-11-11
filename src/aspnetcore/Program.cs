@@ -16,13 +16,6 @@ namespace NotBacon
             WebHost.CreateDefaultBuilder(args)
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseStartup<Startup>()
-                .ConfigureAppConfiguration((ctx, builder) =>
-                {
-                    builder
-                        .AddJsonFile("appsettings.json")
-                        .AddJsonFile($"appsettings.{ctx.HostingEnvironment.EnvironmentName}.json", optional: true)
-                        .AddEnvironmentVariables();
-                })
                 .Build();
     }
 }

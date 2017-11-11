@@ -9,11 +9,30 @@
     "siteLocation": {
       "type": "string"
     },
+    "computerVisionApiLocation": {
+      "type": "string",
+      "defaultValue": "eastus2",
+      "allowedValues": [
+          "eastus2",
+          "southeastasia",
+          "westcentralus",
+          "westeurope",
+          "westus"
+      ]
+    },
+    "computerVisionApiSku": {
+        "type": "string",
+        "defaultValue": "F0",
+        "allowedValues": [
+            "F0",
+            "S1"
+        ]
+    },
     "customVisionApiKey": {
-      "type": "securestring"
+        "type": "securestring"
     },
     "customVisionApiUrl": {
-      "type": "string"
+        "type": "string"
     },
     "repoUrl": {
       "type": "string"
@@ -21,6 +40,9 @@
     "branch": {
       "type": "string"
     }
+  },
+  "variables": {
+    "computerVisionApiName": "[concat(parameters('siteName'), '-compvision')]"
   },
   "resources": [
     {
@@ -44,6 +66,14 @@
             {
               "name": "CUSTOM_VISION_API_URL",
               "value": "[parameters('customVisionApiUrl')]"
+            },
+            {
+              "name": "COMP_VISION_API_KEY",
+              "value": "[listKeys(resourceId('Microsoft.CognitiveServices/accounts', variables('computerVisionApiName')), '2016-02-01-preview').key1]"
+            },
+            {
+                "name": "COMP_VISION_API_URL",
+                "value": "[concat(reference(resourceId('Microsoft.CognitiveServices/accounts', variables('computerVisionApiName')), '2016-02-01-preview').endpoint, '/models/celebrities/analyze')]"
             },
             {
               "name": "PROJECT",
@@ -103,6 +133,17 @@
         "ApplicationId": "[parameters('siteName')]",
         "Request_Source": "IbizaWebAppExtensionCreate"
       }
+    },
+    {
+        "apiVersion": "2016-02-01-preview",
+        "name": "[variables('computerVisionApiName')]",
+        "location": "[parameters('computerVisionApiLocation')]",
+        "type": "Microsoft.CognitiveServices/accounts",
+        "kind": "ComputerVision",
+        "sku": {
+            "name": "[parameters('computerVisionApiSku')]"
+        },
+        "properties": {}
     }
   ],
   "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
