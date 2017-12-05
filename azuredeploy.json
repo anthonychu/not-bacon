@@ -60,19 +60,19 @@
               "value": "[reference(resourceId('microsoft.insights/components/', parameters('siteName')), '2015-05-01').InstrumentationKey]"
             },
             {
-              "name": "CUSTOM_VISION_API_KEY",
+              "name": "CustomVisionApiKey",
               "value": "[parameters('customVisionApiKey')]"
             },
             {
-              "name": "CUSTOM_VISION_API_URL",
+              "name": "CustomVisionApiUrl",
               "value": "[parameters('customVisionApiUrl')]"
             },
             {
-              "name": "COMP_VISION_API_KEY",
+              "name": "CompVisionApiKey",
               "value": "[listKeys(resourceId('Microsoft.CognitiveServices/accounts', variables('computerVisionApiName')), '2016-02-01-preview').key1]"
             },
             {
-                "name": "COMP_VISION_API_URL",
+                "name": "CompVisionApiUrl",
                 "value": "[concat(reference(resourceId('Microsoft.CognitiveServices/accounts', variables('computerVisionApiName')), '2016-02-01-preview').endpoint, '/models/celebrities/analyze')]"
             },
             {

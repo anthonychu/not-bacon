@@ -40,9 +40,9 @@ namespace NotBacon.Controllers
         {
             var content = new StringContent(JsonConvert.SerializeObject(new { Url = url }));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            content.Headers.Add("Prediction-Key", config["CUSTOM_VISION_API_KEY"]);
+            content.Headers.Add("Prediction-Key", config["CustomVisionApiKey"]);
 
-            var response = await httpClient.PostAsync(config["CUSTOM_VISION_API_URL"], content);
+            var response = await httpClient.PostAsync(config["CustomVisionApiUrl"], content);
             var result = JsonConvert.DeserializeObject<CustomVisionResult>(await response.Content.ReadAsStringAsync());
 
             var baconPrediction = result.Predictions.FirstOrDefault(p => p.Tag == "bacon");
@@ -54,9 +54,9 @@ namespace NotBacon.Controllers
         {
             var content = new StringContent(JsonConvert.SerializeObject(new { url }));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            content.Headers.Add("Ocp-Apim-Subscription-Key", config["COMP_VISION_API_KEY"]);
+            content.Headers.Add("Ocp-Apim-Subscription-Key", config["CompVisionApiKey"]);
 
-            var response = await httpClient.PostAsync(config["COMP_VISION_API_URL"], content);
+            var response = await httpClient.PostAsync(config["CompVisionApiUrl"], content);
             var resultJson = await response.Content.ReadAsStringAsync();
 
             return Regex.IsMatch(resultJson, @"\bkevin bacon\b", RegexOptions.IgnoreCase);
