@@ -1,4 +1,4 @@
-@page
+﻿@page
 <!DOCTYPE html>
 <html lang="en">
   
@@ -47,7 +47,7 @@
             <h2><i class="fa"  v-bind:class="{ 'fa-check': results.hasKevinBacon, 'fa-times': !results.hasKevinBacon }"></i> Kevin Bacon</h2>
           </div>
           <br />
-          <img :src="url" style="max-width: 100%;" />
+          <img :src="url" v-if="url" style="max-width: 100%;" />
           <hr />
           <p>Powered by <a href="https://azure.microsoft.com/services/cognitive-services//?WT.mc_id=sandbox-demosite-antchu">Microsoft Cognitive Services</a>.</p>
           <p>Build your own at the <b><a href="https://docs.microsoft.com/sandbox/demos/notbacon?WT.mc_id=sandbox-demosite-antchu">Microsoft Docs Sandbox</a>!</b></p>
